@@ -3,6 +3,9 @@ using Business.BusinessAspect.Autofac;
 using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.AutoFac.Caching;
+using Core.Aspects.AutoFac.Performance;
+using Core.Aspects.AutoFac.Transaction;
 using Core.Aspects.AutoFac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
@@ -34,8 +37,9 @@ namespace Business.Concrete
             _categoryService = categoryService;
         }
 
-        [SecuredOperation("admin")]
+        [SecuredOperation("admin,editor,product.add")]
         [ValidationAspect(typeof(ProductValidator))]
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Add(Product product)
         {
             IResult result = BusinessRules.Run(CheckIfProductNameExists(product.ProductName)
@@ -49,7 +53,8 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductAdded);
             
         }
-
+        //[SecuredOperation("admin,editor,product.list")]
+        [CacheAspect]
         public IDataResult<List<Product>> GetAll()
         {
             //if (DateTime.Now.Hour==22)
@@ -64,6 +69,8 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>(_productDal.GetAll(p => p.CategoryId == id));
         }
 
+        [CacheAspect]
+        [PerformanceAspect(5)]
         public IDataResult<Product> GetById(int productId)
         {
             return new SuccessDataResult<Product>(_productDal.Get(p => p.ProductId == productId));
@@ -81,6 +88,7 @@ namespace Business.Concrete
         }
 
         [ValidationAspect(typeof(ProductValidator))]
+        [CacheRemoveAspect("IProductService.Get")]
         public IResult Update(Product product)
         {
             if (CheckIfProductCountOFCategoryCorrect(product.CategoryId).Success)
@@ -90,6 +98,19 @@ namespace Business.Concrete
             }
             return new ErrorResult();
 
+        }
+
+        [TransactionScopeAspect]
+        public IResult AddTransactionalTest(Product product)
+        {
+            // Transaction method çalışırken bir hata olursa yapılan işlemi geri alarak veri tabanında tutarsız veriler olmasını engeller.
+            Add(product);
+            if (product.UnitPrice<10)
+            {
+                throw new Exception("hata");
+            }
+            Add(product);
+            return null;
         }
 
         private IResult CheckIfProductCountOFCategoryCorrect(int categoryId)
@@ -120,6 +141,7 @@ namespace Business.Concrete
             }
             return new SuccessResult();
         }
+
         
     }
 
