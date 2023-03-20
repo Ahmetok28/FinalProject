@@ -1,14 +1,10 @@
 ﻿using Core.Entities.Concrete;
-using Core.Extensions;
 using Core.Utilities.Security.Encryption;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
-using System.Text;
+using Microsoft.Extensions.Configuration;
+using System.IdentityModel.Tokens.Jwt;
+using Core.Extensions;
 
 namespace Core.Utilities.Security.JWT
 {
@@ -47,7 +43,7 @@ namespace Core.Utilities.Security.JWT
                 issuer: tokenOptions.Issuer,
                 audience: tokenOptions.Audience,
                 expires: _accessTokenExpiration,
-                notBefore: DateTime.Now,
+                notBefore: DateTime.UtcNow,
                 claims: SetClaims(user, operationClaims),
                 signingCredentials: signingCredentials
             );

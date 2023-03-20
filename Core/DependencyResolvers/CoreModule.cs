@@ -1,14 +1,13 @@
-﻿using Core.Utilities.IoC;
+﻿using Core.CrossCuttingConcerns.Caching.Microsoft;
+using Core.CrossCuttingConcerns.Caching;
+using Core.Utilities.IoC;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Core.CrossCuttingConcerns.Caching;
-using Microsoft.Extensions.Caching.Memory;
-using Core.CrossCuttingConcerns.Caching.Microsoft;
+using Microsoft.AspNetCore.Http;
 using System.Diagnostics;
 
 namespace Core.DependencyResolvers

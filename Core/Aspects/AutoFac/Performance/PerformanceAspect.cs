@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Aspects.AutoFac.Performance
+namespace Core.Aspects.Autofac.Performance
 {
     public class PerformanceAspect : MethodInterception
     {
@@ -38,3 +38,4 @@ namespace Core.Aspects.AutoFac.Performance
         }
     }
 }
+

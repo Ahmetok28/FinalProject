@@ -3,10 +3,10 @@ using Business.BusinessAspect.Autofac;
 using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
-using Core.Aspects.AutoFac.Caching;
-using Core.Aspects.AutoFac.Performance;
-using Core.Aspects.AutoFac.Transaction;
-using Core.Aspects.AutoFac.Validation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Transaction;
+using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -116,7 +116,7 @@ namespace Business.Concrete
         private IResult CheckIfProductCountOFCategoryCorrect(int categoryId)
         {
             var result = _productDal.GetAll(p => p.CategoryId == categoryId).Count;
-            if (result >= 10)
+            if (result >= 100)
             {
                 return new ErrorResult(Messages.ProductCountOfCategoryError);
             }

@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Entities.Concrete
+namespace Core.CrossCuttingConcerns.Logging
 {
-    public class OperationClaim:IEntity
+    public class LogParameter
     {
-        public int Id { get; set; }
         public string Name { get; set; }
+        public object Value { get; set; }
+        public string Type { get; set; }
+
     }
 }

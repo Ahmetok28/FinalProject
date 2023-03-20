@@ -13,7 +13,7 @@ namespace Core.CrossCuttingConcerns.Caching
         //Generic olanın alternatifi ama tür dönüşümlerini yapmak gerekiyor
         object Get(string key);
         // Cahche veri eklemek için
-        void Add(string key, object value,int duration);
+        void Add(string key, object value, int duration);
         //Cahce de var mı?
         bool IsAdd(string key);
         // Cache den silmek için

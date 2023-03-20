@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Aspects.AutoFac.Caching
+namespace Core.Aspects.Autofac.Caching
 {
     public class CacheRemoveAspect : MethodInterception
     {
@@ -24,6 +24,7 @@ namespace Core.Aspects.AutoFac.Caching
 
         protected override void OnSuccess(IInvocation invocation)
         {
+
             _cacheManager.RemoveByPattern(_pattern);
         }
     }

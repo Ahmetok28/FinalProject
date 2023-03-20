@@ -9,9 +9,9 @@ namespace Core.Utilities.Business
 {
     public class BusinessRules
     {
-        public static IResult Run(params IResult[] logics)
+        public static IResult Run(params IResult[] logigcs)
         {
-            foreach (var logic in logics)
+            foreach (var logic in logigcs)
             {
                 if (!logic.Success)
                 {
