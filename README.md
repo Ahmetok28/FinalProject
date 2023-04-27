@@ -1,4 +1,4 @@
-# FinalProject
+# Northwind Project
 ## (Geliştirmeye Devam Ediyorum...)
 <ul>
   <li> Proje C# dilinde, çok katmanlı mimari ve SOLID prensiplerine uygun olarak geliştirildi. </li>
