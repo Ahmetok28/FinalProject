@@ -9,7 +9,6 @@
   <li> JWT uygulamaları,Transaction, Cache, Validation ve Performance aspectleri uygulandı. </li>
   <li> Tüm metodlar için geçerli bir loglama desteği eklendi </li>
   <li> Doğrulama için Fluent Validation desteği, IoC için Autofac desteği eklendi. </li>
-  <li> Proje, araba, marka, renk, araba resimleri, kullanıcı, işlem talebi, kullanıcı işlem talepleri, müşteri, kredi kartı ve kiralama için CRUD işlemleri içerir. </li>
   <li> Araba kiralama belirli iş kurallarına göre gerçekleştirilir. </li>
 </ul>
 Katmanlar
